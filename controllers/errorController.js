@@ -57,7 +57,7 @@ const sendErrorProd = (res, req, err) => {
             });
         }
         //programming or other error
-        // console.error('ERROR ', err);
+        console.error('ERROR ', err);
         return res.status(500).json({
             status: 'error',
             message: 'something went wrong!'
@@ -73,7 +73,7 @@ const sendErrorProd = (res, req, err) => {
     }
 
     //programming or other error
-    // console.error('ERROR ', err);
+    console.error('ERROR ', err);
     return res.status(err.statusCode).render('error', {
         title: 'Something went wrong!',
         msg: 'Please try again later.'
