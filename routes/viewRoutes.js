@@ -1,7 +1,7 @@
 const express = require('express');
 const viewController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
-const bookingController = require('../controllers/bookingController');
+// const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ const router = express.Router();
 //     );
 //     next();
 // });
+router.use(viewController.alerts);
 
 router.get(
     '/',
