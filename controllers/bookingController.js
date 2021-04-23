@@ -58,9 +58,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 //     //how the function works: first when success_url is hit on getCheckoutSession function after booking tour, this function(createBookingCheckout) is called as it is in the middleware stack of '/' route handler in viewRoutes. tour,user & price are taken from the req.query and then after checking the if condition, new booking is created. then site will be redirected to main(root) page '/' again. so again all middleware functions will be called from the start. this time in createBookingCheckout function tour, user & price are not present on req.query . so the if condition fails and next() is returned as a result next middleware is called. this acts a small protection from users to book without paying money but is unsecure anyways. hence, it is a temporary soln.
 // });
 const createBookingCheckout = async session => {
+    // console.log(session);
     const tour = session.client_reference_id;
     const user = (await User.findOne({ email: session.customer_email })).id;
-    const price = session.display_items[0].amount / 100;
+    const price = session.amount_total / 100;
     await Booking.create({ tour, user, price });
 };
 exports.webhookCheckout = (req, res, next) => {
