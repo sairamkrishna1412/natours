@@ -107,7 +107,7 @@ csp.extend(app, {
                 'unsafe-inline',
                 'data:',
                 'blob:',
-                // 'wss://<HEROKU-SUBDOMAIN>.herokuapp.com:<PORT>/',
+                'wss://natours-sai.herokuapp.com:*/',
                 'https://*.stripe.com',
                 'https://*.mapbox.com',
                 'https://*.cloudflare.com/',
@@ -131,6 +131,12 @@ const limiter = rateLimit({
         'You have reached max requests in an hour(250), please try again in an hour'
 });
 app.use('/api', limiter);
+
+app.post(
+    '/webhook-checkout',
+    express.raw({ type: 'application/json' }),
+    bookingController.webhookCheckout
+);
 
 //Parse request body as JSON
 app.use(
@@ -192,11 +198,6 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
-app.post(
-    '/webhook-checkout',
-    app.use(express.raw({ type: 'application/json' })),
-    bookingController.webhookCheckout
-);
 app.all('*', (req, res, next) => {
     //initial :
     // res.status(404).json({
