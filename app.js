@@ -132,12 +132,6 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-app.post(
-    '/webhook-checkout',
-    app.use(express.raw({ type: 'application/json' })),
-    bookingController.webhookCheckout
-);
-
 //Parse request body as JSON
 app.use(
     express.json({
@@ -198,6 +192,11 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
+app.post(
+    '/webhook-checkout',
+    app.use(express.raw({ type: 'application/json' })),
+    bookingController.webhookCheckout
+);
 app.all('*', (req, res, next) => {
     //initial :
     // res.status(404).json({
