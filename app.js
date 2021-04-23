@@ -9,6 +9,7 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const csp = require('express-csp');
 const compression = require('compression');
+const cors = require('cors');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -27,6 +28,20 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 //GLOBAL MIDDLEWARE
+
+//implementing CORS(cross origin resource sharing)
+app.use(cors());
+// This allows all websites to make requests to our api
+//insted of allowing to all websites, if we want to allow requests from only some websites we can do the following :
+//let us say our api is at : api.natours.com  & front-end website at : natours.com, to enable requests from only 'natours.com' we can do :
+//app.use(cors({
+//     origin: 'https://www.natours.com'
+// }))
+
+//options is just another http method just like get, post, patch etc. this options request is sent from the browser whenever a non simple request is sent(only get and post are simple requests. all other requests are non-simple, ex : put, patch, delete)
+app.options('*', cors());
+//we can also enable non-simple request only from a specific route.
+// app.options('/api/v1/tours/:id', cors());
 
 //serving static files
 // app.use(express.static(`${__dirname}/public`));
