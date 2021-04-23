@@ -46,3 +46,12 @@ process.on('unhandledRejection', err => {
         process.exit(1);
     });
 });
+
+process.on('SIGTERM', () => {
+    console.log(
+        'SIGTERM triggered. shutting down application after executing all pending requests.'
+    );
+    server.close(() => {
+        console.log('Process terminated. all pending requests executed');
+    });
+});
