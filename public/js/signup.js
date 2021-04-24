@@ -19,10 +19,11 @@ export const signup = async function(user) {
         // console.log(response);
         if (response.data.status === 'success') {
             showAlert('success', 'Sign up successful');
-            window.setTimeout(async () => {
-                await login(user.email, user.password);
-                // location.assign('/login');
-            }, 1000);
+            login(user.email, user.password);
+            // window.setTimeout(async () => {
+            //     await login(user.email, user.password);
+            //     // location.assign('/login');
+            // }, 1000);
         }
     } catch (error) {
         // console.error(error);
