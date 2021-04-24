@@ -21,8 +21,8 @@ export const signup = async function(user) {
             showAlert('success', 'Sign up successful');
             // await login(user.email, user.password);
             window.setTimeout(async () => {
-                // await login(user.email, user.password);
-                location.assign('/login');
+                await login(user.email, user.password);
+                // location.assign('/login');
             }, 1000);
         }
     } catch (error) {

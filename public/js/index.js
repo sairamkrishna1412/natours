@@ -88,6 +88,11 @@ if (signupForm) {
             .value;
         await signup({ name, email, password, passwordConfirm });
 
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        passwordConfirm.value = '';
+
         document.querySelector('.btn-green--signup').textContent = 'Sign up';
     });
 }
