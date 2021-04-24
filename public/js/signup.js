@@ -21,7 +21,7 @@ exports.signup = async function(user) {
             showAlert('success', 'Sign up successful');
             window.setTimeout(() => {
                 login(user.email, user.password);
-            }, 3000);
+            }, 1500);
         }
     } catch (error) {
         showAlert('error', error.response.data.message);

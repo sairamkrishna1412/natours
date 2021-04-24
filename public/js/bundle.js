@@ -8808,11 +8808,12 @@ exports.signup = /*#__PURE__*/function () {
           case 3:
             response = _context.sent;
 
+            // console.log(response);
             if (response.data.status === 'success') {
               (0, _alerts.showAlert)('success', 'Sign up successful');
               window.setTimeout(function () {
                 (0, _login.login)(user.email, user.password);
-              }, 5000);
+              }, 1500);
             }
 
             _context.next = 10;
@@ -9211,11 +9212,12 @@ if (signupForm) {
           switch (_context2.prev = _context2.next) {
             case 0:
               e.preventDefault();
+              document.querySelector('.btn-green--signup').textContent = 'Please wait...';
               name = document.getElementById('name').value;
               email = document.getElementById('email').value;
               password = document.getElementById('password').value;
               passwordConfirm = document.getElementById('confirm_password').value;
-              _context2.next = 7;
+              _context2.next = 8;
               return (0, _signup.signup)({
                 name: name,
                 email: email,
@@ -9223,7 +9225,10 @@ if (signupForm) {
                 passwordConfirm: passwordConfirm
               });
 
-            case 7:
+            case 8:
+              document.querySelector('.btn-green--signup').textContent = 'Sign up';
+
+            case 9:
             case "end":
               return _context2.stop();
           }
@@ -9267,7 +9272,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37895" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33847" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

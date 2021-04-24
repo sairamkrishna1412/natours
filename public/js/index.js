@@ -79,13 +79,16 @@ if (bookTourButton) {
 if (signupForm) {
     signupForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        document.querySelector('.btn-green--signup').textContent =
+            'Please wait...';
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('confirm_password')
             .value;
-
         await signup({ name, email, password, passwordConfirm });
+
+        document.querySelector('.btn-green--signup').textContent = 'Sign up';
     });
 }
 
