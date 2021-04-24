@@ -8809,8 +8809,10 @@ exports.signup = /*#__PURE__*/function () {
             response = _context.sent;
 
             if (response.data.status === 'success') {
-              (0, _alerts.showAlert)('Sign up successful');
-              (0, _login.login)(user.email, user.password);
+              (0, _alerts.showAlert)('success', 'Sign up successful');
+              window.setTimeout(function () {
+                (0, _login.login)(user.email, user.password);
+              }, 5000);
             }
 
             _context.next = 10;

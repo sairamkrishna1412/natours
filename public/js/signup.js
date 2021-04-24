@@ -16,9 +16,12 @@ exports.signup = async function(user) {
                 passwordConfirm: user.passwordConfirm
             }
         });
+        // console.log(response);
         if (response.data.status === 'success') {
-            showAlert('Sign up successful');
-            login(user.email, user.password);
+            showAlert('success', 'Sign up successful');
+            window.setTimeout(() => {
+                login(user.email, user.password);
+            }, 3000);
         }
     } catch (error) {
         showAlert('error', error.response.data.message);
