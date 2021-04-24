@@ -19,7 +19,7 @@ export const signup = async function(user) {
         // console.log(response);
         if (response.data.status === 'success') {
             showAlert('success', 'Sign up successful');
-            login(user.email, user.password);
+            await login(user.email, user.password);
             // window.setTimeout(async () => {
             //     await login(user.email, user.password);
             //     // location.assign('/login');
