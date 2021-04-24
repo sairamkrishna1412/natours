@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { showAlert } from './alerts';
-import { login } from './login';
+// import { login } from './login';
 
 exports.signup = async function(user) {
     try {
@@ -20,8 +20,9 @@ exports.signup = async function(user) {
         if (response.data.status === 'success') {
             showAlert('success', 'Sign up successful');
             window.setTimeout(() => {
-                login(user.email, user.password);
-            }, 1500);
+                // login(user.email, user.password);
+                location.assign('/login');
+            }, 1000);
         }
     } catch (error) {
         showAlert('error', error.response.data.message);
