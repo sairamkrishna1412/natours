@@ -4,7 +4,7 @@ import axios from 'axios';
 import { showAlert } from './alerts';
 // import { login } from './login';
 
-exports.signup = async function(user) {
+export const signup = async function(user) {
     try {
         const response = await axios({
             method: 'POST',
@@ -21,10 +21,11 @@ exports.signup = async function(user) {
             showAlert('success', 'Sign up successful');
             // window.setTimeout(() => {
             //     // login(user.email, user.password);
-            //     location.assign('/login');
+            //     // location.assign('/login');
             // }, 1000);
         }
     } catch (error) {
+        console.error(error);
         showAlert('error', error.response.data.message);
     }
 };
