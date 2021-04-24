@@ -19,10 +19,10 @@ exports.signup = async function(user) {
         // console.log(response);
         if (response.data.status === 'success') {
             showAlert('success', 'Sign up successful');
-            window.setTimeout(() => {
-                // login(user.email, user.password);
-                location.assign('/login');
-            }, 1000);
+            // window.setTimeout(() => {
+            //     // login(user.email, user.password);
+            //     location.assign('/login');
+            // }, 1000);
         }
     } catch (error) {
         showAlert('error', error.response.data.message);
