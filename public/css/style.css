@@ -1386,21 +1386,19 @@ textarea{
   overflow: hidden;
 }
 
-/* .user_rating--container{
+.user_rating--container{
   max-width: 13rem;
-  max-height: 10rem;
   font-size: 2rem;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
   background-color: #fff;
-  float: right;
+  /* float: right; */
   border-radius: 1rem;
   margin-left: auto;
   margin-right: 3rem;
   margin-top: 3rem;
   padding: 1rem;
-  overflow-y: hidden;
-} */
+}
 
 .rating_text{
   font-weight: 700;
