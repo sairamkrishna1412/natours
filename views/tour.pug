@@ -71,6 +71,25 @@ block content
         .reviews
             each review in tour.reviews
                 +reviewCard(review)
+        if booking
+            .add_review
+                button.btn.btn--green.span-all-rows.btn--new_review Review
+        .new-review-dialog(class="hidden")
+            button.close-dialog &times;
+            .dialog-heading
+                h2.heading-secondary.ma-bt-lg Review
+
+            form#review_form(data-tourid=`${tour.id}`)
+                .form__group
+                    label.form__label(for="new_rating") Rating
+                    input#new_rating.form__input(type="number" placeholder="4" min="1" max="5" required)
+                .form__group
+                    label.form__label(for="new_review") Review
+                    textarea#new_review.form__input(name="review", cols="30", rows="4" placeholder="Write a review" minlength="4" required)
+                .form__group
+                    button.btn.btn--green.btn--submit_review Submit
+
+        .overlay(class="hidden")
 
     section.section-cta
         .cta

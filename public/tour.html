@@ -483,6 +483,44 @@
           </div>
         </div>
       </div>
+      <div class="add_review">
+        <button class="btn btn--green span-all-rows btn--review">Review</button>
+      </div>
+
+      <div class="new-review-dialog hidden">
+          <button class="close-dialog">&times;</button>
+          <div class="dialog-heading" style="text-align: center;">
+            <h2 class="heading-secondary ma-bt-lg" >Review</h2>
+          </div>
+          <form id='review_form'>
+
+            <div class='form__group'>
+              <label for="new_rating" class="form__label">Rating</label>
+              <input
+                  type="number"
+                  placeholder="4"
+                  class="form__input"
+                  id="new_rating"
+                  min="1"
+                  max="5"
+                  required
+              />
+            </div>
+
+            <div class='form__group'>
+              <label for="new_review" class="form__label">Review</label>
+              <textarea name="review" cols="30" rows="4" id="new_review" class="form__input" placeholder="Type something.." minlength="4"></textarea>
+            </div>
+            
+            <div class="form__group">
+              <button class="btn btn--green">
+                  Submit
+              </button>
+            </div>
+
+          </form>
+      </div>    
+      <div class="overlay hidden"></div>
     </section>
 
     <section class="section-cta">

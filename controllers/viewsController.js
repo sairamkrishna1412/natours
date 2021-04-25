@@ -28,11 +28,19 @@ exports.getTour = catchAsync(async (req, res, next) => {
         path: 'reviews',
         fields: 'review rating user'
     });
+    let booking;
+    if (res.locals.user) {
+        booking = await Booking.findOne({
+            user: res.locals.user.id,
+            tour: tour.id
+        });
+    }
     if (!tour) return next(new AppError('no tour found with that name.', 404));
     //2) build template
     res.status(200).render('tour', {
         title: tour.name || '',
-        tour
+        tour,
+        booking
     });
 });
 

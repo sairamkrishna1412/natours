@@ -238,6 +238,20 @@ body {
   background-color: #55c57a;
 }
 
+.btn--new_review{
+  background-color: #fff;
+  color: #55c57a;
+}
+.btn--new_review:focus{
+  background-color: #55c57a;
+  color: #fff;
+}
+.add_review{
+  padding: 3rem 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .btn--small {
   padding: 1.25rem 3rem !important;
   font-size: 1.4rem !important;
@@ -1321,4 +1335,57 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+
+.new-review-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: auto;
+    margin: 0 auto;
+    /* text-align: center; */
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    z-index: 1200;
+    /* transition: all 1s; */
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1100;
+}
+.close-dialog {
+    background-color: inherit;
+    border: none;
+    font-size: 2.5rem;
+    float: right;
+    margin: 0 5px 3px 0;
+    cursor: pointer;
+}
+.dialog-heading{
+  text-align: center;
+}
+.hidden {
+    /* display: none; */
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+}
+
+textarea{
+  overflow: hidden;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
