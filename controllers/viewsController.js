@@ -3,6 +3,7 @@ const Tour = require('../models/tourModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const Booking = require('../models/bookingModel');
+const Review = require('../models/reviewModel');
 
 exports.alerts = (req, res, next) => {
     const { alert } = req.query;
@@ -29,8 +30,13 @@ exports.getTour = catchAsync(async (req, res, next) => {
         fields: 'review rating user'
     });
     let booking;
+    let review;
     if (res.locals.user) {
         booking = await Booking.findOne({
+            user: res.locals.user.id,
+            tour: tour.id
+        });
+        review = await Review.findOne({
             user: res.locals.user.id,
             tour: tour.id
         });
@@ -40,7 +46,8 @@ exports.getTour = catchAsync(async (req, res, next) => {
     res.status(200).render('tour', {
         title: tour.name || '',
         tour,
-        booking
+        booking,
+        review
     });
 });
 
@@ -71,6 +78,18 @@ exports.getMyTours = catchAsync(async (req, res) => {
     res.status(200).render('overview', {
         title: 'My Tours',
         tours
+    });
+});
+
+exports.getMyReviews = catchAsync(async (req, res) => {
+    const { id } = req.user;
+    const reviews = await Review.find({ user: id }).populate({
+        path: 'tour',
+        select: 'imageCover name slug'
+    });
+    res.status(200).render('review', {
+        title: 'My Reviews',
+        reviews
     });
 });
 

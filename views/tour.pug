@@ -71,9 +71,17 @@ block content
         .reviews
             each review in tour.reviews
                 +reviewCard(review)
-        if booking
+        -if (booking && !review)
             .add_review
                 button.btn.btn--green.span-all-rows.btn--new_review Review
+        -else if(review)
+                .user_rating--container
+                    span.rating_text Your rating
+                    .reviews__rating
+                        each star in [1,2,3,4,5]
+                            svg.reviews__star(class=`reviews__star--${review.rating>=star? 'active' : 'inactive'}`)
+                                use(xlink:href='/img/icons.svg#icon-star')
+                                
         .new-review-dialog(class="hidden")
             button.close-dialog &times;
             .dialog-heading

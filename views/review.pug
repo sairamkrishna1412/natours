@@ -1,0 +1,25 @@
+extends base
+
+mixin add_review(tour, rating, review, createdAt)
+    figure.my_review-card
+        .my_review-head
+            img.review-card-image(src=`/img/tours/${tour.imageCover}` alt=`${tour.name}`)
+            h5.review_title=tour.name
+        .my_review--details
+            .my_review--detail-box.my_review--rating
+                //- h6.review_card__detail=rating
+                .reviews__rating
+                    each star in [1,2,3,4,5]
+                        svg.reviews__star(class=`reviews__star--${rating>=star? 'active' : 'inactive'}`)
+                            use(xlink:href='/img/icons.svg#icon-star')
+
+            .my_review--detail-box.my_review--review
+                h6.review_card__detail=review
+            .my_review--detail-box.my_review--date
+                h6.review_card__detail=createdAt.toLocaleString('en-IN',{month : 'long', year:'numeric', day:'numeric'})
+            .my_review--detail-box.card__link-box
+                a.card__link(href=`/tour/${tour.slug}`) View tour &nbsp;&nbsp;&nbsp; &#x1F517;
+block content
+    h2.heading-secondary.ma-bt-md.my_reviews-heading Your reviews
+    each review in reviews
+        +add_review(review.tour, review.rating, review.review, review.createdAt)   

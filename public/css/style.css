@@ -1337,6 +1337,8 @@ body {
   transform: translateY(-2px);
 }
 
+/*reviews*/
+
 .new-review-dialog {
     position: absolute;
     top: 50%;
@@ -1384,6 +1386,112 @@ textarea{
   overflow: hidden;
 }
 
+/* .user_rating--container{
+  max-width: 13rem;
+  max-height: 10rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+  float: right;
+  border-radius: 1rem;
+  margin-left: auto;
+  margin-right: 3rem;
+  margin-top: 3rem;
+  padding: 1rem;
+  overflow-y: hidden;
+} */
+
+.rating_text{
+  font-weight: 700;
+}
+
+/*my reviews*/
+.my_reviews-heading{
+  text-align: center; 
+  font-size: 3rem;
+  /* font-weight: 300;  */
+  margin-top: 3rem;
+}
+
+.my_review-card{
+  max-height: 8rem;
+  line-height: 1.2;
+  transform: skewX(-20deg);
+  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  font-size: 3rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  display: flex;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  overflow-y: hidden;
+}
+.my_review-head{
+  padding: 2.5rem 6rem 2.5rem 4rem;
+  transform: skewX(20deg);
+  display: flex;
+}
+.review_title{
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.review-card-image{
+  width: 6rem;
+  height: 5rem;
+  margin-right: 4rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.my_review--details{
+  display: flex;
+  
+}
+.my_review--detail-box{
+  padding: 2.5rem 2rem; 
+  /* transform: skewX(20deg); */   
+}
+.my_review--rating,
+.my_review--date{
+  background: linear-gradient(to right bottom,#000000, #434343);
+  color: #fff;
+}
+.my_review--review{
+  max-height: 2rem;
+  font-size: 2.8rem;
+  width: 35rem;
+  text-align: center;
+  font-weight: 400;
+  overflow: hidden;
+}
+h6{
+  transform: skewX(20deg);
+}
+
+.card__link:link,
+.card__link:visited {
+  /* flex: 0 0 auto; */
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* padding: 2.5rem; */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.card__link span {
+  transform: skewX(20deg);
+}
+.card__link-box{
+  transition: all 0.3s;
+}
+.card__link-box:hover{
+  background-color: #28b487;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
