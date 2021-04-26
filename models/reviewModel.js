@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema(
         },
         rating: {
             type: Number,
-            required: true,
+            required: [true, 'Review must have a rating'],
             min: 1,
             max: 5
         },

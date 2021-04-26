@@ -20,7 +20,9 @@ const newReviewBtn = document.querySelector('.btn--review');
 const reviewForm = document.getElementById('review-form');
 const closeReviewForm = document.querySelector('.dialog__close');
 const overlay = document.querySelector('.dialog__overlay');
-const editReview = document.querySelector('.my-review__edit');
+const editReviewElems = document.getElementsByClassName('my-review__edit');
+
+let reviewID;
 
 //DELEGATION
 if (mapBox) {
@@ -107,8 +109,13 @@ if (signupForm) {
 if (newReviewBtn) {
     newReviewBtn.addEventListener('click', toggleReviewForm);
 }
-if (editReview) {
-    editReview.addEventListener('click', toggleReviewForm);
+if (editReviewElems) {
+    Array.from(editReviewElems).forEach(el =>
+        el.addEventListener('click', e => {
+            reviewID = e.target.getAttribute('data-reviewid');
+            toggleReviewForm();
+        })
+    );
 }
 
 if (closeReviewForm || overlay) {
@@ -121,8 +128,7 @@ if (reviewForm) {
         const rating = document.getElementById('new_rating').value;
         const review = document.getElementById('new_review').value;
 
-        if (editReview) {
-            const reviewID = editReview.dataset.reviewid;
+        if (editReviewElems) {
             await updateReview({ reviewID, rating, review });
         } else {
             const tourID = reviewForm.dataset.tourid;
