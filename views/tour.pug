@@ -1,5 +1,7 @@
 extends base
 include _reviewCard
+include _reviewDialog
+
 block append head
     script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
     link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
@@ -72,32 +74,33 @@ block content
             each review in tour.reviews
                 +reviewCard(review)
         -if (booking && !review)
-            .add_review
-                button.btn.btn--green.span-all-rows.btn--new_review Review
+            .add-review-box
+                button.btn.btn--green.span-all-rows.btn--review Review
         -else if(review)
-                .user_rating--container
-                    span.rating_text Your rating
+            a.btn.btn--white.rating-box(href="/my-reviews") 
+                    span Your rating
                     .reviews__rating
                         each star in [1,2,3,4,5]
                             svg.reviews__star(class=`reviews__star--${review.rating>=star? 'active' : 'inactive'}`)
                                 use(xlink:href='/img/icons.svg#icon-star')
                                 
-        .new-review-dialog(class="hidden")
-            button.close-dialog &times;
-            .dialog-heading
-                h2.heading-secondary.ma-bt-lg Review
+        +review("create",tour)
+        //- .dialog.dialog__review(class="hidden")
+        //-     button.dialog__close &times;
+        //-     .heading.dialog__heading
+        //-         h2.heading-secondary.ma-bt-lg Review
 
-            form#review_form(data-tourid=`${tour.id}`)
-                .form__group
-                    label.form__label(for="new_rating") Rating
-                    input#new_rating.form__input(type="number" placeholder="4" min="1" max="5" required)
-                .form__group
-                    label.form__label(for="new_review") Review
-                    textarea#new_review.form__input(name="review", cols="30", rows="4" placeholder="Write a review" minlength="4" required)
-                .form__group
-                    button.btn.btn--green.btn--submit_review Submit
+        //-     form#review-form(data-tourid=`${tour.id}`)
+        //-         .form__group
+        //-             label.form__label(for="new_rating") Rating
+        //-             input#new_rating.form__input(type="number" placeholder="4" min="1" max="5" required)
+        //-         .form__group
+        //-             label.form__label(for="new_review") Review
+        //-             textarea#new_review.form__input.form__review-textarea(name="review", cols="30", rows="4" placeholder="Write a review" minlength="4" required)
+        //-         .form__group
+        //-             button.btn.btn--green.btn--submit_review Submit
 
-        .overlay(class="hidden")
+        
 
     section.section-cta
         .cta

@@ -1,25 +1,29 @@
 extends base
+include _reviewDialog
 
-mixin add_review(tour, rating, review, createdAt)
-    figure.my_review-card
-        .my_review-head
-            img.review-card-image(src=`/img/tours/${tour.imageCover}` alt=`${tour.name}`)
-            h5.review_title=tour.name
-        .my_review--details
-            .my_review--detail-box.my_review--rating
-                //- h6.review_card__detail=rating
+mixin add_review(review)
+    figure.my-review
+        a.my-review__head.my-review--green.my-review-popup(href=`/tour/${review.tour.slug}`)
+            img.my-review__image(src=`/img/tours/${review.tour.imageCover}` alt=`${review.tour.name}`)
+            //- a.my-review__features.card__link View tour &nbsp;&nbsp; &#x1F517;
+            h5.my-review__title=review.tour.name
+        .my-review__body
+            .my-review__features.my-review__rating
+                //- h6.my-review__feature=rating
                 .reviews__rating
                     each star in [1,2,3,4,5]
-                        svg.reviews__star(class=`reviews__star--${rating>=star? 'active' : 'inactive'}`)
+                        svg.reviews__star(class=`reviews__star--${review.rating>=star? 'active' : 'inactive'}`)
                             use(xlink:href='/img/icons.svg#icon-star')
 
-            .my_review--detail-box.my_review--review
-                h6.review_card__detail=review
-            .my_review--detail-box.my_review--date
-                h6.review_card__detail=createdAt.toLocaleString('en-IN',{month : 'long', year:'numeric', day:'numeric'})
-            .my_review--detail-box.card__link-box
-                a.card__link(href=`/tour/${tour.slug}`) View tour &nbsp;&nbsp;&nbsp; &#x1F517;
+            .my-review__features.my-review--green.my-review__review
+                h6.my-review__feature=review.review
+            .my-review__features.my-review__date
+                h6.my-review__feature=review.createdAt.toLocaleString('en-IN',{month : 'long', year:'numeric', day:'numeric'})
+            btn.my-review__features.my-review--green.my-review__edit.my-review-popup(data-reviewid=`${review.id}`) Edit review &nbsp;&nbsp; 📝
+
 block content
-    h2.heading-secondary.ma-bt-md.my_reviews-heading Your reviews
+    h2.heading-secondary.ma-bt-md.my-reviews-heading Your reviews
+
+    +review("update")
     each review in reviews
-        +add_review(review.tour, review.rating, review.review, review.createdAt)   
+        +add_review(review)

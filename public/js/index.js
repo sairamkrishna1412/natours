@@ -6,7 +6,7 @@ import { displayMap } from './mapbox';
 import { userSettings } from './userSettings';
 import { showAlert } from './alerts';
 import { signup } from './signup';
-import { toggleReviewForm, createReview } from './review';
+import { toggleReviewForm, createReview, updateReview } from './review';
 
 //DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -16,10 +16,11 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-settings');
 const bookTourButton = document.getElementById('book-tour');
 const signupForm = document.querySelector('.form--signup');
-const newReviewBtn = document.querySelector('.btn--new_review');
-const reviewForm = document.getElementById('review_form');
-const closeReviewForm = document.querySelector('.close-dialog');
-const overlay = document.querySelector('.overlay');
+const newReviewBtn = document.querySelector('.btn--review');
+const reviewForm = document.getElementById('review-form');
+const closeReviewForm = document.querySelector('.dialog__close');
+const overlay = document.querySelector('.dialog__overlay');
+const editReview = document.querySelector('.my-review__edit');
 
 //DELEGATION
 if (mapBox) {
@@ -106,6 +107,10 @@ if (signupForm) {
 if (newReviewBtn) {
     newReviewBtn.addEventListener('click', toggleReviewForm);
 }
+if (editReview) {
+    editReview.addEventListener('click', toggleReviewForm);
+}
+
 if (closeReviewForm || overlay) {
     closeReviewForm.addEventListener('click', toggleReviewForm);
     overlay.addEventListener('click', toggleReviewForm);
@@ -113,12 +118,16 @@ if (closeReviewForm || overlay) {
 if (reviewForm) {
     reviewForm.addEventListener('submit', async e => {
         e.preventDefault();
-        const tourID = reviewForm.dataset.tourid;
-        // const userID = reviewForm.dataset.userid;
         const rating = document.getElementById('new_rating').value;
         const review = document.getElementById('new_review').value;
 
-        await createReview({ tourID, rating, review });
+        if (editReview) {
+            const reviewID = editReview.dataset.reviewid;
+            await updateReview({ reviewID, rating, review });
+        } else {
+            const tourID = reviewForm.dataset.tourid;
+            await createReview({ tourID, rating, review });
+        }
 
         document.getElementById('new_rating').value = '';
         document.getElementById('new_review').value = '';

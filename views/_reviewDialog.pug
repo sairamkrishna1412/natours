@@ -1,0 +1,17 @@
+mixin review(type, tour=undefined)
+    .dialog.dialog__review(class="hidden")
+        button.dialog__close &times;
+        .heading.dialog__heading
+            h2.heading-secondary.ma-bt-lg Review
+
+        form#review-form(data-tourid=`${type === "create" ? tour.id : undefined}`)
+            .form__group
+                label.form__label(for="new_rating") Rating
+                input#new_rating.form__input(type="number" placeholder="4" min="1" max="5" required)
+            .form__group
+                label.form__label(for="new_review") Review
+                textarea#new_review.form__input.form__review-textarea(name="review", cols="30", rows="4" placeholder="Write a review" minlength="4" required)
+            .form__group
+                button.btn.btn--green.btn--submit_review Submit
+
+    .dialog__overlay(class="hidden")
