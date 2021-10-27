@@ -242,7 +242,8 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     if (!user) {
         return next(
             new AppError(
-                'Either the user does not exist or this token has expired, please generate a new token.'
+                'Either the user does not exist or this token has expired, please generate a new token.',
+                400
             )
         );
     }

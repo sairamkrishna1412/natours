@@ -92,4 +92,4 @@ exports.updateBooking = factory.updateOne(Booking);
 
 exports.deleteBooking = factory.deleteOne(Booking);
 
-exports.updateBooking = factory.updateOne(Booking);
+// exports.updateBooking = factory.updateOne(Booking);
